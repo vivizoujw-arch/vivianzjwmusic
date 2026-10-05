@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#0d1511" />
+  <title>键音 · 乐器工作台</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></div>
+        <div>
+          <h1 data-i18n="brand">键音</h1>
+          <p data-i18n="subtitle">乐器工作台</p>
+        </div>
+      </div>
+      <button id="langBtn" class="ghost-btn" type="button">English</button>
+    </header>
+
+    <section class="card instrument-card">
+      <div class="row responsive-row">
+        <label class="big-label" for="instrument" data-i18n="instrument">演奏音色</label>
+        <select id="instrument" class="select">
+          <option value="piano" data-i18n="piano">钢琴 · 三角钢琴</option>
+          <option value="guitar" data-i18n="guitar">吉他 · 钢弦木吉他</option>
+          <option value="violin" data-i18n="violin">小提琴</option>
+          <option value="flute" data-i18n="flute">长笛</option>
+          <option value="organ" data-i18n="organ">管风琴</option>
+        </select>
+      </div>
+      <p class="muted" data-i18n="instrumentHelp">音符按钮、键盘与回放均使用当前音色。切换后可用同一段记录试听不同乐器。</p>
+      <p class="status" id="audioStatus" data-i18n="audioReady">音色已就绪</p>
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <h2 data-i18n="melodyTitle">把音符变成旋律</h2>
+        <span class="section-kicker" data-i18n="section1">01 / 音符按钮</span>
+      </div>
+
+      <label for="noteInput" class="field-label" data-i18n="inputNotes">输入音符</label>
+      <input id="noteInput" class="note-input" value="C4 D4 E4 C4 E4 G4 D3#" autocomplete="off" spellcheck="false" />
+      <button id="generateBtn" class="primary-btn" type="button" data-i18n="generate">生成按钮</button>
+      <p class="muted small" data-i18n="inputHelp">用空格、逗号或分号分隔。支持 D3#、D#3、Db3、♯、♭；不写八度默认为 4。</p>
+
+      <div id="noteButtons" class="note-grid" aria-live="polite"></div>
+      <p id="noteCount" class="muted tiny"></p>
+    </section>
+
+    <section class="card piano-card">
+      <div class="piano-heading">
+        <div>
+          <h2 data-i18n="pianoTitle">完整钢琴</h2>
+          <p class="muted small">A0 — C8 · <span data-i18n="pianoHelp">横向滚动探索所有琴键</span></p>
+        </div>
+        <button id="centerPiano" class="secondary-btn" type="button" data-i18n="centerC">回到中央 C</button>
+      </div>
+      <div id="pianoScroller" class="piano-scroller">
+        <div id="piano" class="piano" aria-label="88-key piano"></div>
+      </div>
+      <p id="lastNote" class="status" data-i18n="readyFirst">准备好，弹下第一个音。</p>
+      <label class="field-label" for="volume" data-i18n="volume">音量</label>
+      <input id="volume" type="range" min="0" max="100" value="65" />
+    </section>
+
+    <section class="card">
+      <div class="section-head">
+        <h2 data-i18n="recordTitle">留住这一段</h2>
+        <span class="section-kicker" data-i18n="section2">02 / 节奏记录</span>
+      </div>
+      <p class="muted" data-i18n="recordHelp">记录音符间隔与按住时长，回放时还原节奏。</p>
+
+      <div class="controls">
+        <button id="recordBtn" class="primary-btn compact" type="button" data-i18n="record">记录节奏</button>
+        <button id="stopBtn" class="secondary-btn compact" type="button" data-i18n="stop">停止</button>
+        <button id="clearBtn" class="secondary-btn compact" type="button" data-i18n="clear">清空</button>
+        <button id="playBtn" class="secondary-btn compact" type="button" data-i18n="playback">回放</button>
+      </div>
+
+      <p id="recordState" class="status" data-i18n="recordOff">未开启记录</p>
+      <p id="recordStats" class="muted tiny">0 个音符 · 0.00 秒</p>
+      <p class="muted tiny" data-i18n="sessionOnly">记录仅保留在本次页面中</p>
+    </section>
+
+    <footer>
+      <strong>键音 / JIANYIN</strong>
+      <span data-i18n="footer">浏览器合成音色 · 无需安装</span>
+      <a href="credits.html" data-i18n="credits">音源致谢</a>
+    </footer>
+  </main>
+
+  <script src="notation.js"></script>
+  <script src="language.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
